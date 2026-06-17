@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Larp Forum</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="content">
-            <div class="category-header">Looksmax</div>
-            <table class="forum-table">
-                <tr>
-                    <th>Forum</th>
-                    <th>Threads</th>
-                    <th>Posts</th>
-                </tr>
-                <tr>
-                    <td><div class="forum-title">Looksmaxing</div><p>Discuss fitness, style, surgery.</p></td>
-                    <td>259K</td>
-                    <td>4.2M</td>
-                </tr>
-            </table>
-
-            <div class="create-thread-box">
-                <h3>Create New Thread</h3>
-                <input type="text" placeholder="Thread Title...">
-                <textarea placeholder="Write your content here..."></textarea>
-                <button>Post Thread</button>
-            </div>
-        </div>
-
-        <div class="sidebar">
-            <div class="stat-box"><h3>Statistics</h3><p>Threads: 2M<br>Posts: 28M</p></div>
-        </div>
+    <!-- Login Area -->
+    <div id="auth-box">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="pass" placeholder="Password">
+        <button id="login-btn">Login</button>
     </div>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="admin-panel" style="display:none;">
+        <h3>Admin Panel</h3>
+        <input type="text" id="megatitle" placeholder="Megathread Title">
+        <button id="mega-btn">Create Megathread</button>
+    </div>
+
+    <div id="forum-content">
+        <h1>Larp Forum</h1>
+        <div id="thread-list"></div>
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>
