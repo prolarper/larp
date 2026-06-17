@@ -1,0 +1,4 @@
+body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 0 10px; }
+#post-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+.post { border-bottom: 1px solid #ccc; padding: 10px 0; }
+.post h3 { margin: 0; font-size: 1rem; color: #333; }
