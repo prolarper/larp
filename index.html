@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Larp Forum - Discussion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <div class="logo">LARP FORUM</div>
-        </header>
+    <div class="main-container">
+        <div class="content">
+            <div class="category-header">Looksmax</div>
+            <table class="forum-table">
+                <tr>
+                    <th>Forum</th>
+                    <th>Threads</th>
+                    <th>Posts</th>
+                </tr>
+                <tr>
+                    <td><div class="forum-title">Looksmaxing</div><p>Discuss fitness, style, surgery.</p></td>
+                    <td>259K</td>
+                    <td>4.2M</td>
+                </tr>
+            </table>
 
-        <div id="forum-posts" class="post-list">
+            <div class="create-thread-box">
+                <h3>Create New Thread</h3>
+                <input type="text" placeholder="Thread Title...">
+                <textarea placeholder="Write your content here..."></textarea>
+                <button>Post Thread</button>
             </div>
+        </div>
 
-        <form id="post-form" class="editor-box">
-            <input type="text" id="username" placeholder="Username" required>
-            <textarea id="message" placeholder="Post your reply..." required></textarea>
-            <button type="submit">Post Reply</button>
-        </form>
+        <div class="sidebar">
+            <div class="stat-box"><h3>Statistics</h3><p>Threads: 2M<br>Posts: 28M</p></div>
+        </div>
     </div>
-    <script type="module" src="script.js"></script>
 </body>
 </html>
