@@ -1,30 +1,44 @@
-// Load posts on startup
-document.addEventListener('DOMContentLoaded', loadPosts);
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-function addPost() {
+// --- PASTE YOUR CONFIG HERE ---
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "larplarplarp.firebaseapp.com",
+    projectId: "larplarplarp",
+    storageBucket: "larplarplarp.appspot.com",
+    messagingSenderId: "428336369892",
+    appId: "1:428336369892:web:0c968b393686ccc9729cf1"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Send message
+document.getElementById('post-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const user = document.getElementById('username').value;
     const msg = document.getElementById('message').value;
 
-    if (!user || !msg) return alert("Please fill in both fields!");
+    await addDoc(collection(db, "posts"), {
+        user, msg, timestamp: new Date()
+    });
+    document.getElementById('message').value = '';
+});
 
-    const post = { user, msg, date: new Date().toLocaleString() };
-    
-    // Save to localStorage
-    const posts = JSON.parse(localStorage.getItem('larpPosts') || '[]');
-    posts.unshift(post); // Add new post to the top
-    localStorage.setItem('larpPosts', JSON.stringify(posts));
-
-    document.getElementById('message').value = ''; // Clear input
-    loadPosts();
-}
-
-function loadPosts() {
-    const posts = JSON.parse(localStorage.getItem('larpPosts') || '[]');
+// Real-time listener
+const q = query(collection(db, "posts"), orderBy("timestamp", "asc"));
+onSnapshot(q, (snapshot) => {
     const container = document.getElementById('forum-posts');
-    container.innerHTML = posts.map(p => `
-        <div class="post">
-            <h3>${p.user} <small>${p.date}</small></h3>
-            <p>${p.msg}</p>
-        </div>
-    `).join('');
-}
+    container.innerHTML = "";
+    snapshot.forEach((doc) => {
+        const p = doc.data();
+        container.innerHTML += `
+            <div class="post">
+                <h3>${p.user}</h3>
+                <p>${p.msg}</p>
+            </div>
+        `;
+    });
+    container.scrollTop = container.scrollHeight;
+});

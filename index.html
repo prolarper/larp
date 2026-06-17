@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Larp Forum</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Larp Forum</h1>
-    
-    <section id="post-form">
-        <input type="text" id="username" placeholder="Your Name">
-        <textarea id="message" placeholder="Share your LARP story..."></textarea>
-        <button onclick="addPost()">Post</button>
-    </section>
+    <div class="app-container">
+        <header>
+            <h1>Larp Forum</h1>
+        </header>
 
-    <div id="forum-posts"></div>
+        <div id="forum-posts" class="chat-window">
+            </div>
 
-    <script src="script.js"></script>
+        <form id="post-form" class="input-area">
+            <input type="text" id="username" placeholder="Name" required>
+            <input type="text" id="message" placeholder="Type a message..." required>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>
